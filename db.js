@@ -10,30 +10,4 @@ db.once("open", function() {
   console.log("db connected");
 });
 
-const Door = mongoose.model("Door", {
-  width_in: Number,
-  height_in: Number,
-  type: string // hinged, sliding, automatic, basic
-});
-
-const createDemoDoors = () => {
-  const slidingDoor = new Door({
-    width_in: 23,
-    height_in: 60,
-    type: "sliding"
-  });
-
-  slidingDoor.save().then(() => {
-    console.log("sliding door saved");
-  });
-
-  const basicDoor = new Door({
-    width_in: 25,
-    height_in: 69,
-    type: "basic"
-  });
-
-  basicDoor.save().then(() => {
-    console.log("basic door saved");
-  });
-};
+module.exports = db;
