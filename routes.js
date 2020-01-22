@@ -15,5 +15,19 @@ module.exports = function(app) {
     });
   });
 
+  router.route("/door").post(function(req, res) {
+    console.log(req.body);
+    const { width_in, height_in, type } = req.body;
+    const door = new Door({ width_in, height_in, type });
+    door.save((err, newDoor) => {
+      if (err) {
+        console.log(`${err}`);
+        res.status(400), json({ msg: "error creating door" });
+      } else {
+        res.json(newDoor);
+      }
+    });
+  });
+
   app.use("/api", router);
 };
